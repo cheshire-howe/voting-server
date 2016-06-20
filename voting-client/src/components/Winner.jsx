@@ -1,6 +1,10 @@
 import React, { PropTypes, Component } from 'react';
 
 class Winner extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    // pure render
+    shallowCompare(this, nextProps, nextState);
+  }
 
   render() {
     return (

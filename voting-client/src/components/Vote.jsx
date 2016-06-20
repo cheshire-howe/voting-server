@@ -1,6 +1,12 @@
 import React, { PropTypes, Component } from 'react';
+import shallowCompare from 'react-addons-shallow-compare';
 
 class Vote extends Component {
+  shouldComponentUpdate(nextProps, nextState) {
+    // pure render
+    return shallowCompare(this, nextProps, nextState);
+  }
+
   getPair() {
     return this.props.pair || [];
   }

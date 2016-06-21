@@ -1,9 +1,18 @@
 import React, { PropTypes, Component } from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
+import { connect } from 'react-redux';
 
 import Winner from './Winner';
 
-class Results extends Component {
+const mapStateToProps = state => {
+  return {
+    pair: state.getIn(['vote', 'pair']),
+    tally: state.getIn(['vote', 'tally']),
+    winner: state.get('winner')
+  };
+};
+
+export class Results extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     // pure render
     return shallowCompare(this, nextProps, nextState);
@@ -51,4 +60,4 @@ Results.propTypes = {
 
 };
 
-export default Results;
+export const ResultsContainer = connect(mapStateToProps)(Results);

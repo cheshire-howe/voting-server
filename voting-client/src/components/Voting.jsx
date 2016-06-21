@@ -1,14 +1,24 @@
 import React, { PropTypes, Component } from 'react';
 import shallowCompare from 'react-addons-shallow-compare';
+import { connect } from 'react-redux';
 
 import Vote from './Vote';
 import Winner from './Winner';
+import * as actionCreators from '../action_creators'; 
+const mapStateToProps = state => {
+  return {
+    pair: state.getIn(['vote', 'pair']),
+    hasVoted: state.get('hasVoted'),
+    winner: state.get('winner')
+  };
+};
 
-class Voting extends Component {
+export class Voting extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     // pure render
     return shallowCompare(this, nextProps, nextState);
   }
+
   render() {
     return (
       <div>
@@ -24,5 +34,8 @@ Voting.propTypes = {
   
 };
 
-export default Voting;
+export const VotingContainer = connect(
+  mapStateToProps,
+  actionCreators
+)(Voting);
 

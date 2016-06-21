@@ -3,6 +3,7 @@ import shallowCompare from 'react-addons-shallow-compare';
 import { connect } from 'react-redux';
 
 import Winner from './Winner';
+import * as actionCreators from '../action_creators';
 
 const mapStateToProps = state => {
   return {
@@ -60,4 +61,7 @@ Results.propTypes = {
 
 };
 
-export const ResultsContainer = connect(mapStateToProps)(Results);
+export const ResultsContainer = connect(
+  mapStateToProps,
+  actionCreators
+)(Results);
